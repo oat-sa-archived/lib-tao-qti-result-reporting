@@ -51,9 +51,9 @@ class TestPartReader implements DeliveryReaderInterface
         $items = $this->getItems();
 
         foreach ($items as $item) {
-            if(!isset(self::$itemReaders[$item->getUri()])) {
-                self::$itemReaders[$item->getUri()] = new ItemReader($item);
-                self::$itemReaders[$item->getUri()]->init();
+            if(!isset(self::$itemReaders[$item->getHref()])) {
+                self::$itemReaders[$item->getHref()] = new ItemReader($item);
+                self::$itemReaders[$item->getHref()]->init();
             }
         }
     }

@@ -76,7 +76,7 @@ class TestReader implements DeliveryReaderInterface
             self::$testParts[$testFile] = $testDefinition->getComponentsByClassName('testPart');
         }
 
-        return self::$testParts;
+        return self::$testParts[$testFile];
     }
 
     /**

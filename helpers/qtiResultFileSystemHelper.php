@@ -22,6 +22,7 @@
 namespace oat\qtiResultReporting\helpers;
 
 
+use oat\oatbox\filesystem\Directory;
 use oat\taoQtiItem\helpers\QtiFile;
 use oat\taoQtiItem\model\qti\ParserFactory;
 use oat\taoQtiItem\model\QtiJsonItemCompiler;
@@ -32,7 +33,7 @@ class qtiResultFileSystemHelper
      * Looking for private folder with compiled deliveries (data/tao/private/...)
      *
      * @param string $itemRef
-     * @return \tao_models_classes_service_StorageDirectory $path
+     * @return Directory $path
      * @throws \common_Exception
      * @throws \common_exception_InvalidArgumentType
      */
@@ -67,7 +68,7 @@ class qtiResultFileSystemHelper
         return $langDir;
     }
 
-    public static function readQtiItem(\tao_models_classes_service_StorageDirectory $dir)
+    public static function readQtiItem(Directory $dir)
     {
         // new TestRunner
         $file = $dir->getFile(QtiJsonItemCompiler::ITEM_FILE_NAME);
@@ -90,7 +91,7 @@ class qtiResultFileSystemHelper
         return $data;
     }
 
-    public static function readQtiVariables(\tao_models_classes_service_StorageDirectory $dir)
+    public static function readQtiVariables(Directory $dir)
     {
         $vars = [];
 

@@ -88,6 +88,10 @@ class qtiResultFileSystemHelperTest extends TaoPhpUnitTestRunner
             'fileJson->willReturn' => true,
             'fileJson->read' => 1,
             'fileJson->read->willReturn' => file_get_contents($this->getSamplesPath() . 'json' . DIRECTORY_SEPARATOR . QtiJsonItemCompiler::ITEM_FILE_NAME),
+            'fileRdf->exists' => 0,
+            'fileRdf->willReturn' => '',
+            'fileRdf->read' => 0,
+            'fileRdf->read->willReturn' => ''
         ]);
 
         $result = qtiResultFileSystemHelper::readQtiItem($this->dir->reveal());

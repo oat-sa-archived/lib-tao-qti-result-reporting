@@ -99,6 +99,7 @@ class qtiResultFileSystemHelper
         $file = $dir->getFile(QtiJsonItemCompiler::VAR_ELT_FILE_NAME);
         if ($file->exists()) {
             $vars = $file->read();
+            $vars = json_decode($vars);
         }
 
         return $vars;

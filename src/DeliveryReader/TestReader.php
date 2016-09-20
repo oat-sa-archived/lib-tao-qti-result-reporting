@@ -57,8 +57,8 @@ class TestReader implements DeliveryReaderInterface
         $parts = $this->getTestParts();
         foreach ($parts as $key => $testPart) {
             if (!isset(self::$testPartReaders[$key])) {
-                self::$testParts[$key] = new TestPartReader($testPart);
-                self::$testParts[$key]->init();
+                self::$testPartReaders[$key] = new TestPartReader($testPart);
+                self::$testPartReaders[$key]->init();
             }
         }
     }

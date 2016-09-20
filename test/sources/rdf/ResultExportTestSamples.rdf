@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xml:base="http://www.tao.lu/Ontologies/mpart.rdf#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:generis="http://www.tao.lu/Ontologies/generis.rdf#"
+    xmlns:widget="http://www.tao.lu/datatypes/WidgetDefinitions.rdf#"
+    xmlns:tao="http://www.tao.lu/Ontologies/TAO.rdf#"
+    xmlns:subject="http://www.tao.lu/Ontologies/TAOSubject.rdf#"
+    xmlns:testcenter="http://www.tao.lu/Ontologies/TAOTestCenter.rdf#"
+    xmlns:art="http://www.tao.lu/Ontologies/mpart.rdf#"
+>
+
+<!-- students -->
+
+<rdf:Description rdf:about="http://www.tao.lu/Ontologies/mpart.rdf#student1_test">
+    <rdf:type rdf:resource="http://www.tao.lu/Ontologies/mpart.rdf#Student"/>
+    <rdfs:label xml:lang="en-US"><![CDATA[a]]></rdfs:label>
+    <art:studentState rdf:resource="http://www.tao.lu/Ontologies/mpart.rdf#state1" />
+    <art:studentDistrict rdf:resource="http://www.tao.lu/Ontologies/mpart.rdf#district1_test" />
+    <testcenter:member rdf:resource="http://www.tao.lu/Ontologies/mpart.rdf#school1_test" />
+    <art:grade><![CDATA[01]]></art:grade>
+    <art:dateOfBirth><![CDATA[12082000]]></art:dateOfBirth>
+    <art:gender><![CDATA[male]]></art:gender>
+    <art:studentid><![CDATA[12001]]></art:studentid>
+    <art:middleInitial><![CDATA[Midname]]></art:middleInitial>
+    <art:accomodations rdf:resource="http://www.tao.lu/Ontologies/mpart.rdf#ColorContrast" />
+    <art:accomodations rdf:resource="http://www.tao.lu/Ontologies/mpart.rdf#TextToSpeech" />
+    <art:accomodations rdf:resource="http://www.tao.lu/Ontologies/mpart.rdf#Zoom" />
+    <generis:userFirstName><![CDATA[Kim]]></generis:userFirstName>
+    <generis:userLastName><![CDATA[Sullivan]]></generis:userLastName>
+    <generis:login><![CDATA[sullivankim]]></generis:login>
+    <generis:password><![CDATA[Student123!!]]></generis:password>
+    <generis:userDefLg rdf:resource="http://www.tao.lu/Ontologies/TAO.rdf#Langen-US" />
+    <generis:userUILg rdf:resource="http://www.tao.lu/Ontologies/TAO.rdf#Langen-US" />
+    <generis:userTimezone><![CDATA[UTC]]></generis:userTimezone>
+    <generis:userRoles rdf:resource="http://www.tao.lu/Ontologies/TAO.rdf#DeliveryRole" />
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.tao.lu/Ontologies/mpart.rdf#student2_test">
+    <rdf:type rdf:resource="http://www.tao.lu/Ontologies/mpart.rdf#Student"/>
+    <rdfs:label xml:lang="en-US"><![CDATA[b]]></rdfs:label>
+    <art:studentState rdf:resource="http://www.tao.lu/Ontologies/mpart.rdf#state1" />
+    <art:studentDistrict rdf:resource="http://www.tao.lu/Ontologies/mpart.rdf#district2_test" />
+    <testcenter:member rdf:resource="http://www.tao.lu/Ontologies/mpart.rdf#school1_test" />
+    <art:grade><![CDATA[02]]></art:grade>
+    <art:dateOfBirth><![CDATA[12082000]]></art:dateOfBirth>
+    <art:studentid><![CDATA[12002]]></art:studentid>
+    <art:accomodations rdf:resource="http://www.tao.lu/Ontologies/mpart.rdf#ColorContrast" />
+    <art:accomodations rdf:resource="http://www.tao.lu/Ontologies/mpart.rdf#Zoom" />
+    <generis:userFirstName><![CDATA[Daniel]]></generis:userFirstName>
+    <generis:userLastName><![CDATA[Scott]]></generis:userLastName>
+    <generis:login><![CDATA[scottdaniel]]></generis:login>
+    <generis:password><![CDATA[Student123!!]]></generis:password>
+    <generis:userDefLg rdf:resource="http://www.tao.lu/Ontologies/TAO.rdf#Langen-US" />
+    <generis:userUILg rdf:resource="http://www.tao.lu/Ontologies/TAO.rdf#Langen-US" />
+    <generis:userTimezone><![CDATA[UTC]]></generis:userTimezone>
+    <generis:userRoles rdf:resource="http://www.tao.lu/Ontologies/TAO.rdf#DeliveryRole" />
+</rdf:Description>
+
+
+<!-- districts -->
+
+<rdf:Description rdf:about="http://www.tao.lu/Ontologies/mpart.rdf#district1_test">
+    <rdf:type rdf:resource="http://www.tao.lu/Ontologies/mpart.rdf#District"/>
+    <rdfs:label xml:lang="en-US"><![CDATA[A]]></rdfs:label>
+    <art:districtCode><![CDATA[dist_01]]></art:districtCode>
+</rdf:Description>
+<rdf:Description rdf:about="http://www.tao.lu/Ontologies/mpart.rdf#district2_test">
+    <rdf:type rdf:resource="http://www.tao.lu/Ontologies/mpart.rdf#District"/>
+    <rdfs:label xml:lang="en-US"><![CDATA[A]]></rdfs:label>
+    <art:districtCode><![CDATA[dist_02]]></art:districtCode>
+</rdf:Description>
+
+
+<!-- testCenters -->
+
+<rdf:Description rdf:about="http://www.tao.lu/Ontologies/mpart.rdf#school1_test">
+    <rdf:type rdf:resource="http://www.tao.lu/Ontologies/TAOTestCenter.rdf#TestCenter"/>
+    <art:schoolCode><![CDATA[school_01]]></art:schoolCode>
+</rdf:Description>
+
+
+<!-- assessments -->
+
+<rdf:Description rdf:about="http://www.tao.lu/Ontologies/mpart.rdf#assessment1_test">
+    <rdf:type rdf:resource="http://www.tao.lu/Ontologies/mpart.rdf#Assessment"/>
+    <rdfs:label xml:lang="en-US"><![CDATA[Assessment 1]]></rdfs:label>
+    <art:assessmentCourseCode><![CDATA[code1]]></art:assessmentCourseCode>
+    <art:assessmentGrade><![CDATA[01]]></art:assessmentGrade>
+    <art:assessmentOrder><![CDATA[1]]></art:assessmentOrder>
+    <art:assessmentForms><![CDATA[http://www.tao.lu/Ontologies/mpart.rdf#formELAGrade3FormA]]></art:assessmentForms>
+    <art:assessmentForms><![CDATA[http://www.tao.lu/Ontologies/mpart.rdf#formELAGrade3FormB]]></art:assessmentForms>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.tao.lu/Ontologies/mpart.rdf#assessment2_test">
+    <rdf:type rdf:resource="http://www.tao.lu/Ontologies/mpart.rdf#Assessment"/>
+    <rdfs:label xml:lang="en-US"><![CDATA[Assessment 2]]></rdfs:label>
+    <art:assessmentCourseCode><![CDATA[code2]]></art:assessmentCourseCode>
+    <art:assessmentGrade><![CDATA[02]]></art:assessmentGrade>
+    <art:assessmentOrder><![CDATA[2]]></art:assessmentOrder>
+    <art:assessmentForms><![CDATA[http://www.tao.lu/Ontologies/mpart.rdf#formELAGrade3FormA]]></art:assessmentForms>
+    <art:assessmentForms><![CDATA[http://www.tao.lu/Ontologies/mpart.rdf#formELAGrade3FormB]]></art:assessmentForms>
+</rdf:Description>
+
+
+<!-- assignments -->
+
+<rdf:Description rdf:about="http://www.tao.lu/Ontologies/mpart.rdf#assignment1_test">
+    <rdf:type rdf:resource="http://www.tao.lu/Ontologies/mpart.rdf#Assignment"/>
+    <rdfs:label xml:lang="en-US"><![CDATA[Assignment 1PHPUNIT_test]]></rdfs:label>
+    <art:assignmentStudent rdf:resource="http://www.tao.lu/Ontologies/mpart.rdf#student1_test" />
+    <art:assignmentAssessment rdf:resource="http://www.tao.lu/Ontologies/mpart.rdf#assessment1_test"/>
+    <art:assignmentTeacher rdf:resource="http://www.tao.lu/Ontologies/mpart.rdf#teacher1_test" />
+    <art:assignmentForm rdf:resource="http://www.tao.lu/Ontologies/mpart.rdf#form1_test" />
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.tao.lu/Ontologies/mpart.rdf#assignment2_test">
+    <rdf:type rdf:resource="http://www.tao.lu/Ontologies/mpart.rdf#Assignment"/>
+    <rdfs:label xml:lang="en-US"><![CDATA[Assignment 2PHPUNIT_test]]></rdfs:label>
+    <art:assignmentStudent rdf:resource="http://www.tao.lu/Ontologies/mpart.rdf#student2_test" />
+    <art:assignmentAssessment rdf:resource="http://www.tao.lu/Ontologies/mpart.rdf#assessment2_test"/>
+    <art:assignmentTeacher rdf:resource="http://www.tao.lu/Ontologies/mpart.rdf#teacher1_test" />
+    <art:assignmentForm rdf:resource="http://www.tao.lu/Ontologies/mpart.rdf#form1_test" />
+</rdf:Description>
+
+
+<!-- states -->
+
+<rdf:Description rdf:about="http://www.tao.lu/Ontologies/mpart.rdf#state1">
+    <rdf:type rdf:resource="http://www.tao.lu/Ontologies/mpart.rdf#State"/>
+    <rdfs:label xml:lang="en-US"><![CDATA[MA]]></rdfs:label>
+</rdf:Description>
+
+
+</rdf:RDF>

@@ -23,18 +23,58 @@ namespace oat\qtiResultReporting\DeliveryReader;
 
 
 use oat\qtiResultReporting\DeliveryReaderInterface;
+use oat\qtiResultReporting\helpers\qtiResultFileSystemHelper;
+use qtism\data\AssessmentItemRef;
 
 class ItemReader implements DeliveryReaderInterface
 {
     private $item;
 
-    public function __construct($item)
+    private $qtiItem;
+
+    private $qtiVariables;
+
+    /**
+     * @var \tao_models_classes_service_StorageDirectory
+     */
+    private $dataDirectory;
+
+    public function __construct(AssessmentItemRef $item)
     {
         $this->item = $item;
     }
 
     public function init()
     {
+        $this->getQtiItem();
+        $this->getQtiVariableElements();
+    }
 
+    public function getQtiItem()
+    {
+        if (!isset($this->qtiItem)) {
+            $itemDataDirectory = $this->getItemDataDirectory($this->item->getHref());
+            $this->qtiItem = qtiResultFileSystemHelper::readQtiItem($itemDataDirectory);
+        }
+        return $this->qtiItem;
+    }
+
+    public function getQtiVariableElements()
+    {
+        if (!isset($this->qtiVariables)) {
+            $itemDataDirectory = $this->getItemDataDirectory($this->item->getHref());
+            $this->qtiVariables = qtiResultFileSystemHelper::readQtiVariables($itemDataDirectory);
+        }
+        return $this->qtiVariables;
+    }
+
+    private function getItemDataDirectory($itemRef)
+    {
+
+        if (!isset($this->dataDirectory)) {
+            $this->dataDirectory = qtiResultFileSystemHelper::getItemDataDirectory($itemRef);
+        }
+
+        return $this->dataDirectory;
     }
 }

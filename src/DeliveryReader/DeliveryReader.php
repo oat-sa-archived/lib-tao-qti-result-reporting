@@ -24,7 +24,6 @@ namespace oat\qtiResultReporting\DeliveryReader;
 
 use core_kernel_classes_Resource;
 use oat\qtiResultReporting\DeliveryReaderInterface;
-use oat\qtiResultReporting\DeliveryReader\TestReader;
 
 class DeliveryReader implements DeliveryReaderInterface
 {
@@ -43,6 +42,7 @@ class DeliveryReader implements DeliveryReaderInterface
     public function init()
     {
         $this->testReader = new TestReader($this->delivery);
+        $this->testReader->init();
     }
 
 }

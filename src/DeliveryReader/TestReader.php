@@ -38,6 +38,9 @@ class TestReader implements DeliveryReaderInterface
      */
     private static $testParts = [];
 
+    /**
+     * @var array
+     */
     private static $testPartReaders = [];
 
     /**
@@ -55,6 +58,7 @@ class TestReader implements DeliveryReaderInterface
         foreach ($parts as $testPart) {
             if (!isset(self::$testPartReaders[$testPart->getUri()])) {
                 self::$testParts[$testPart->getUri()] = new TestPartReader($testPart);
+                self::$testParts[$testPart->getUri()]->init();
             }
         }
     }
@@ -88,7 +92,7 @@ class TestReader implements DeliveryReaderInterface
     private function getRuntimeInputParameters()
     {
         $runtime = DeliveryAssemblyService::singleton()->getRuntime($this->delivery);
-        $inputParameters = \tao_models_classes_service_ServiceCallHelper::getInputValues($runtime, array());
+        $inputParameters = \tao_models_classes_service_ServiceCallHelper::getInputValues($runtime, []);
 
         return $inputParameters;
     }

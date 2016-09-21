@@ -61,12 +61,14 @@ class TestReader implements DeliveryReaderInterface
                 self::$testPartReaders[$key]->init();
             }
         }
+
+        return $this;
     }
 
     /**
-     * @return array
+     * @return array of the TestParts
      */
-    private function getTestParts()
+    public function getTestParts()
     {
         $inputParameters = $this->getRuntimeInputParameters();
         $testFile = $inputParameters['QtiTestCompilation'];
@@ -76,7 +78,7 @@ class TestReader implements DeliveryReaderInterface
             self::$testParts[$testFile] = $testDefinition->getComponentsByClassName('testPart');
         }
 
-        return self::$testParts[$testFile];
+        return self::$testParts;
     }
 
     /**

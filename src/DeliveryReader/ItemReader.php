@@ -48,6 +48,8 @@ class ItemReader implements DeliveryReaderInterface
     {
         $this->getQtiItem();
         $this->getQtiVariableElements();
+
+        return $this;
     }
 
     public function getQtiItem()

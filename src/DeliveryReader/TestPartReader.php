@@ -61,7 +61,7 @@ class TestPartReader implements DeliveryReaderInterface
     /**
      * @return QtiComponentCollection
      */
-    private function getItems()
+    public function getItems()
     {
         if ($this->items === null) {
             $this->items = $this->testPart->getComponentsByClassName('assessmentItemRef');

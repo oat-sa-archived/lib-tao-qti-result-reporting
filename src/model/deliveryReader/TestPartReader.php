@@ -19,14 +19,20 @@
  * @author Alexander Zagovorichev <zagovorichev@1pt.com>
  */
 
-namespace oat\qtiResultReporting\DeliveryReader;
+namespace oat\qtiResultReporting\model\deliveryReader;
 
 
-use oat\qtiResultReporting\DeliveryReaderInterface;
+use oat\qtiResultReporting\model\ReaderInterface;
 use qtism\data\QtiComponentCollection;
 use qtism\data\TestPart;
 
-class TestPartReader implements DeliveryReaderInterface
+/**
+ * Reading parts of the compiled test from the delivery
+ *
+ * Class TestPartReader
+ * @package oat\qtiResultReporting\DeliveryReader
+ */
+class TestPartReader implements ReaderInterface
 {
 
     /**

@@ -52,8 +52,7 @@
   },
   "autoload": {
     "psr-4": {
-      "oat\\qtiResultReporting\\": "src",
-      "oat\\qtiResultReporting\\helpers\\": "helpers"
+      "oat\\qtiResultReporting\\": "src"
     }
   },
   "autoload-dev": {

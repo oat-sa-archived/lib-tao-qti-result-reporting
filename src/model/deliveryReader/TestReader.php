@@ -19,14 +19,20 @@
  * @author Alexander Zagovorichev <zagovorichev@1pt.com>
  */
 
-namespace oat\qtiResultReporting\DeliveryReader;
+namespace oat\qtiResultReporting\model\deliveryReader;
 
 
+use oat\qtiResultReporting\model\ReaderInterface;
 use oat\taoDeliveryRdf\model\DeliveryAssemblyService;
-use oat\qtiResultReporting\DeliveryReaderInterface;
 use qtism\data\AssessmentTest;
 
-class TestReader implements DeliveryReaderInterface
+/**
+ * Getting compiled test from the delivery
+ *
+ * Class TestReader
+ * @package oat\qtiResultReporting\DeliveryReader
+ */
+class TestReader implements ReaderInterface
 {
     /**
      * @var \core_kernel_classes_Resource

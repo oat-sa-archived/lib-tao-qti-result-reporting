@@ -19,14 +19,46 @@
  * @author Alexander Zagovorichev <zagovorichev@1pt.com>
  */
 
-namespace oat\qtiResultReporting;
+namespace oat\qtiResultReporting\model\deliveryReader;
 
 
-interface DeliveryReaderInterface
+use core_kernel_classes_Resource;
+use oat\qtiResultReporting\model\ReaderInterface;
+
+/**
+ * Reader of the compiled delivery
+ *
+ * Class DeliveryReader
+ * @package oat\qtiResultReporting\deliveryReader
+ */
+class DeliveryReader implements ReaderInterface
 {
+
+    /** @var core_kernel_classes_Resource  */
+    private $delivery;
+
+    /** @var  TestReader */
+    private $testReader;
+
+    public function __construct(core_kernel_classes_Resource $compiledDelivery)
+    {
+        $this->delivery = $compiledDelivery;
+    }
+
+    public function init()
+    {
+        $this->testReader = new TestReader($this->delivery);
+        $this->testReader->init();
+
+        return $this;
+    }
+
     /**
-     * Initialization all the dependencies
-     * @return void
+     * @return TestReader
      */
-    public function init();
+    public function getTestReader()
+    {
+        return $this->testReader;
+    }
+
 }

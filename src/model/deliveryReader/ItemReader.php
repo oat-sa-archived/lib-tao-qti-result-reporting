@@ -19,14 +19,20 @@
  * @author Alexander Zagovorichev <zagovorichev@1pt.com>
  */
 
-namespace oat\qtiResultReporting\DeliveryReader;
+namespace oat\qtiResultReporting\model\deliveryReader;
 
 
-use oat\qtiResultReporting\DeliveryReaderInterface;
 use oat\qtiResultReporting\helpers\qtiResultFileSystemHelper;
+use oat\qtiResultReporting\model\ReaderInterface;
 use qtism\data\AssessmentItemRef;
 
-class ItemReader implements DeliveryReaderInterface
+/**
+ * Read compiled Item from the compiled delivery
+ *
+ * Class ItemReader
+ * @package oat\qtiResultReporting\DeliveryReader
+ */
+class ItemReader implements ReaderInterface
 {
     private $item;
 

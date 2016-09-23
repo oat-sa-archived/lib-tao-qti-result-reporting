@@ -34,10 +34,19 @@ use qtism\data\AssessmentItemRef;
  */
 class ItemReader implements ReaderInterface
 {
+    /**
+     * @var AssessmentItemRef
+     */
     private $item;
 
+    /**
+     * @var \stdClass
+     */
     private $qtiItem;
 
+    /**
+     * @var \stdClass
+     */
     private $qtiVariables;
 
     /**
@@ -48,14 +57,6 @@ class ItemReader implements ReaderInterface
     public function __construct(AssessmentItemRef $item)
     {
         $this->item = $item;
-    }
-
-    public function init()
-    {
-        $this->getQtiItem();
-        $this->getQtiVariableElements();
-
-        return $this;
     }
 
     public function getQtiItem()

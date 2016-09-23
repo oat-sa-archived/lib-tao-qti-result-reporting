@@ -63,58 +63,10 @@ class DeliveryItemReader
 
                     $uriItem = explode('|', $href)[0];
                     self::$parsers[$delivery->getUri()][$uriItem] = $qtiItemParser;
-
-
-
-                    /*$itemUri = explode('|', $href)[0];
-                    self::$itemVariables[$delivery->getUri()][$itemVariables['itemUri']] = $itemVariables;
-
-
-                    if (!isset(self::$itemVariables[$delivery->getUri()][$qti->data->identifier])){
-                        $itemVariables = [
-                            'itemUri' => $itemUri,
-                            'title' => $qti->data->attributes->title,
-                            'elements' => [],
-                            'responses' => []
-                        ];
-                        $elements = [];
-                        $responses = [];
-                        foreach ($qti->data->body->elements as $element) {
-                            $elements = array_merge($elements, self::getElements($element));
-                            if(!in_array($element->attributes->responseIdentifier, $responses)) {
-                                $responses[] = $element->attributes->responseIdentifier;
-                            }
-                        }
-
-                        $itemVariables['elements'] = $elements;
-                        $itemVariables['responses'] = $responses;
-
-                        self::$itemVariables[$delivery->getUri()][$itemVariables['itemUri']] = $itemVariables;
-                    }*/
                 }
             }
         }
 
         return self::$parsers[$delivery->getUri()];
     }
-/*
-    private static function getElements(\stdClass $element)
-    {
-        $elements = [];
-
-        $itemElements = [];
-        switch ($element->qtiClass) {
-            case 'choiceInteraction':
-                $itemElements = $element->choices;
-                break;
-            default:
-                \common_Logger::w('Undefined element type [' . $element->qtiClass . '], DeliveryItemReader can not read elements');
-        }
-
-        foreach ($itemElements as $itemElement) {
-            $elements[] = $itemElement->identifier;
-        }
-
-        return $elements;
-    }*/
 }

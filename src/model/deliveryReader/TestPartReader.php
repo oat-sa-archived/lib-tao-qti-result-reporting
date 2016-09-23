@@ -45,27 +45,25 @@ class TestPartReader implements ReaderInterface
      */
     private $items;
 
-    private static $itemReaders = [];
+    private static $itemReaders;
 
     public function __construct($testPart)
     {
         $this->testPart = $testPart;
     }
 
-    public function init()
-    {
-        $items = $this->getItems();
-
-        foreach ($items as $item) {
-            if(!isset(self::$itemReaders[$item->getHref()])) {
-                self::$itemReaders[$item->getHref()] = new ItemReader($item);
-                self::$itemReaders[$item->getHref()]->init();
-            }
-        }
-    }
-
     public function getItemReaders()
     {
+        if (!isset(self::$itemReaders)){
+            $items = $this->getItems();
+
+            foreach ($items as $item) {
+                if(!isset(self::$itemReaders[$item->getHref()])) {
+                    self::$itemReaders[$item->getHref()] = new ItemReader($item);
+                }
+            }
+        }
+
         return self::$itemReaders;
     }
 

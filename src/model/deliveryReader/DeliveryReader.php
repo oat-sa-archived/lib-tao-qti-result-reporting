@@ -45,20 +45,11 @@ class DeliveryReader implements ReaderInterface
         $this->delivery = $compiledDelivery;
     }
 
-    public function init()
-    {
-        $this->testReader = new TestReader($this->delivery);
-        $this->testReader->init();
-
-        return $this;
-    }
-
-    /**
-     * @return TestReader
-     */
     public function getTestReader()
     {
+        if (!isset($this->testReader)){
+            $this->testReader = new TestReader($this->delivery);
+        }
         return $this->testReader;
     }
-
 }

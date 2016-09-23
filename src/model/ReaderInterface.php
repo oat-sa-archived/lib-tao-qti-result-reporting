@@ -28,11 +28,4 @@ namespace oat\qtiResultReporting\model;
  * Interface ReaderInterface
  * @package oat\qtiResultReporting
  */
-interface ReaderInterface
-{
-    /**
-     * Initialization all the dependencies
-     * @return void
-     */
-    public function init();
-}
+interface ReaderInterface {}

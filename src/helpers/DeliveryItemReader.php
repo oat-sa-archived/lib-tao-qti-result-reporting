@@ -51,7 +51,7 @@ class DeliveryItemReader
             $deliveryReader = new DeliveryReader($delivery);
 
             /** @var TestPartReader $testPartReader */
-            foreach ($deliveryReader->init()->getTestReader()->getTestPartReaders() as $testPartReader) {
+            foreach ($deliveryReader->getTestReader()->getTestPartReaders() as $testPartReader) {
                 /**
                  * @var string $href
                  * @var ItemReader $itemReader

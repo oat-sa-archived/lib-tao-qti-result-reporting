@@ -21,22 +21,42 @@
 
 namespace oat\qtiResultReporting\model\qtiItemParser\qtiItemElementParser;
 
-
-class DefaultElementParser extends AbstractElementParser
+/**
+ * choiceInteraction
+ *
+ * Class ChoiceParser
+ * @package oat\qtiResultReporting\model\qtiItemParser\qtiItemElementParser
+ */
+class ChoiceParser extends AbstractElementParser
 {
 
     public function parseResponse($response = '')
     {
-        return [];
-    }
+        $rows = [];
+        $response =  trim($response, '[]');
 
-    public function getElementsIds()
-    {
-        return [];
+        if (strpos($response, ';')) {
+            foreach (explode(';', $response) as $item) {
+                $rows[] = trim($item, ' \'');
+            }
+        } else {
+            $rows[] = trim($response, ' \'');
+        }
+
+        return $rows;
     }
 
     public function getElements()
     {
-        return [];
+        return isset($this->element->choices) ? $this->element->choices : [];
+    }
+
+    public function getElementsIds()
+    {
+        $ids = [];
+        foreach ($this->getElements() as $element) {
+            $ids[] = $element->identifier;
+        }
+        return $ids;
     }
 }

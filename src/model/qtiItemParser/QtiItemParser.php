@@ -28,7 +28,7 @@ use oat\qtiResultReporting\model\ParserInterface;
  * Parser for the compiled qtiItem (qtiItem could be get from the ItemReader)
  *
  * Class QtiItemParser
- * @package oat\qtiResultReporting\src\model\qtiItemParser
+ * @package oat\qtiResultReporting\model\qtiItemParser
  */
 class QtiItemParser implements ParserInterface
 {
@@ -38,46 +38,45 @@ class QtiItemParser implements ParserInterface
     private $qti;
 
     /**
-     * @var
+     * @var array
      */
-    private static $elementParser;
+    private $elementsParsers;
+
+    private $responseIdentifiers;
 
     public function __construct($qti)
     {
         $this->qti = $qti;
     }
 
-    public function parse()
+    public function getElementParsers()
     {
-        // TODO: Implement parse() method.
-    }
-
-    /**
-     * Get elements parser
-     *
-     * @param $element
-     * @return QtiItemElementParser
-     */
-    public function getElementParser($element)
-    {
-        if (!isset(self::$elementParser)) {
-            self::$elementParser = new QtiItemElementParser($element);
+        if (!isset($this->elementsParsers)) {
+            $this->elementsParsers = [];
+            foreach ($this->qti->data->body->elements as $key => $element) {
+                $this->elementsParsers[$key] = new QtiItemElementParser($element);
+            }
         }
 
-        return self::$elementParser;
+        return $this->elementsParsers;
     }
 
     /**
-     * @return mixed
+     * Response identifier can be changed from GUI
+     * Collect all of the possible identifiers
      */
-    public function getElements()
+    public function getResponseIdentifiers()
     {
-        return $this->elements;
-    }
-
-    public function parseResponse($element, $responseAnswer)
-    {
-        $parser = $this->getElementParser($element);
-        return $parser->attachResponse($responseAnswer);
+        if (!isset($this->responseIdentifiers)) {
+            $this->responseIdentifiers = [];
+            foreach ($this->getElementParsers() as $elementParser) {
+                if ($elementParser->getResponseIdentifier()
+                    && !in_array($elementParser->getResponseIdentifier(), $this->responseIdentifiers)
+                ) {
+                    $this->responseIdentifiers[] = $elementParser->getResponseIdentifier();
+                }
+            }
+        }
+        return $this->responseIdentifiers;
     }
 }

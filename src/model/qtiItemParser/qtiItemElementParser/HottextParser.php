@@ -21,22 +21,42 @@
 
 namespace oat\qtiResultReporting\model\qtiItemParser\qtiItemElementParser;
 
-
-class DefaultElementParser extends AbstractElementParser
+/**
+ * HottextInteraction
+ *
+ * Class HottextParser
+ * @package oat\qtiResultReporting\model\qtiItemParser\qtiItemElementParser
+ */
+class HottextParser extends AbstractElementParser
 {
 
     public function parseResponse($response = '')
     {
-        return [];
-    }
+        $rows = [];
+        $response =  trim($response, '[]');
 
-    public function getElementsIds()
-    {
-        return [];
+        if (strpos($response, ';')) {
+            foreach (explode(';', $response) as $item) {
+                $rows[] = trim($item, ' \'');
+            }
+        } else {
+            $rows[] = trim($response, ' \'');
+        }
+
+        return $rows;
     }
 
     public function getElements()
     {
-        return [];
+        return isset($this->element->body->elements) ? $this->element->body->elements : [];
+    }
+
+    public function getElementsIds()
+    {
+        $ids = [];
+        foreach ($this->getElements() as $element) {
+            $ids[] = $element->identifier;
+        }
+        return $ids;
     }
 }

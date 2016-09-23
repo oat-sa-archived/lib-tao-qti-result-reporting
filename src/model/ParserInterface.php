@@ -28,9 +28,6 @@ namespace oat\qtiResultReporting\model;
  * For Example: parse qtiItem (which can be pulled from the ItemReader)
  *
  * Interface ParserInterface
- * @package oat\qtiResultReporting\src\model
+ * @package oat\qtiResultReporting\model
  */
-interface ParserInterface
-{
-    public function parse();
-}
+interface ParserInterface{}

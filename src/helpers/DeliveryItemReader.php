@@ -38,7 +38,7 @@ class DeliveryItemReader
 
     /**
      * List of the QtiItemParsers
-     * @see \oat\qtiResultReporting\src\model\qtiItemParser\QtiItemParser
+     * @see \oat\qtiResultReporting\model\qtiItemParser\QtiItemParser
      * @var array
      */
     private static $parsers = [];

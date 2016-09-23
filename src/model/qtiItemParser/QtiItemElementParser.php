@@ -22,44 +22,86 @@
 namespace oat\qtiResultReporting\model\qtiItemParser;
 
 
-use oat\qtiResultReporting\model\ParserInterface;
-use oat\qtiResultReporting\model\qtiItemElementParser\DefaultElementParser;
+use oat\qtiResultReporting\model\qtiItemParser\qtiItemElementParser\AbstractElementParser;
+use oat\qtiResultReporting\model\qtiItemParser\qtiItemElementParser\ChoiceParser;
+use oat\qtiResultReporting\model\qtiItemParser\qtiItemElementParser\DefaultElementParser;
+use oat\qtiResultReporting\model\qtiItemParser\qtiItemElementParser\GapMatchParser;
+use oat\qtiResultReporting\model\qtiItemParser\qtiItemElementParser\HottextParser;
+use oat\qtiResultReporting\model\qtiItemParser\qtiItemElementParser\InlineChoiceParser;
+use oat\qtiResultReporting\model\qtiItemParser\qtiItemElementParser\MatchParser;
 
 
 /**
  * Parser for the qtiItem elements (each of the $qti->body->elements)
  *
  * Class QtiItemElementReader
- * @package oat\qtiResultReporting\src\model\qtiItemParser
+ * @package oat\qtiResultReporting\model\qtiItemParser
  */
-class QtiItemElementParser implements ParserInterface
+class QtiItemElementParser extends AbstractElementParser
 {
-    private $element;
-
+    /**
+     * @var AbstractElementParser
+     */
     private $reader;
 
-    public function __construct($element)
+    public function getResponseIdentifier()
     {
-        $this->element = $element;
-
-        $this->detectReader();
+        return isset($this->element->attributes->responseIdentifier) ? $this->element->attributes->responseIdentifier : '';
     }
 
-    private function detectReader()
+    public function getReader()
     {
-        $reader = new DefaultElementParser();
-        /*
-         * todo for the elements which can't be read by the default parser
-         *
-        switch ($this->element->qtiClass) {
-            case '': break;
-        }*/
+        if (!isset($this->reader)) {
 
-        $this->reader = $reader;
+            $parser = DefaultElementParser::class;
+            switch ($this->element->qtiClass) {
+                case 'gapMatchInteraction':
+                    $parser = GapMatchParser::class;
+                    break;
+                case 'matchInteraction':
+                    $parser = MatchParser::class;
+                    break;
+                case 'choiceInteraction':
+                    $parser = ChoiceParser::class;
+                    break;
+                case 'hottextInteraction':
+                    $parser = HottextParser::class;
+                    break;
+                case 'inlineChoiceInteraction':
+                    $parser = InlineChoiceParser::class;
+                    break;
+                // ignore elements
+                case 'img':
+                    break;
+                default:
+                    \common_Logger::w('Can not parse qtiItem element with qtiClass "'.$this->element->qtiClass.'"');
+            }
+
+            $this->reader = new $parser($this->element);
+        }
+        return $this->reader;
     }
 
-    public function parse()
+    public function getElements()
     {
+        return $this->reader->getElements();
+    }
 
+    public function getElementsIds()
+    {
+        return $this->getReader()->getElementsIds();
+    }
+
+    /**
+     * @param string $response
+     * @return array ['title' => '', 'value' => '']
+     */
+    public function parseResponse($response = '')
+    {
+        $parsed = [];
+        if ($this->getReader()){
+            $parsed = $this->getReader()->parseResponse($response);
+        }
+        return $parsed;
     }
 }

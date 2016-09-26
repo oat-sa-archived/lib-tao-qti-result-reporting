@@ -33,17 +33,26 @@ class HottextParser extends AbstractElementParser
     public function parseResponse($response = '')
     {
         $rows = [];
+        $res = [];
         $response =  trim($response, '[]');
 
-        if (strpos($response, ';')) {
-            foreach (explode(';', $response) as $item) {
-                $rows[] = trim($item, ' \'');
+        if (!empty($response)) {
+            if (strpos($response, ';')) {
+                foreach (explode(';', $response) as $item) {
+                    $rows[] = trim($item, ' \'');
+                }
+            } else {
+                $rows[] = trim($response, ' \'');
             }
-        } else {
-            $rows[] = trim($response, ' \'');
+
+            if (count($rows)) {
+                foreach ($this->getElementsIds() as $elementsId) {
+                    $res[$elementsId] = in_array($elementsId, $rows) ? 1 : 0;
+                }
+            }
         }
 
-        return $rows;
+        return $res;
     }
 
     public function getElements()

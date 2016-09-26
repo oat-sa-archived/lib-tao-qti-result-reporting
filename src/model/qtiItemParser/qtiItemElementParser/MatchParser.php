@@ -34,17 +34,27 @@ class MatchParser extends AbstractElementParser
         $elIds = $this->getElementsIds();
 
         $rows = [];
+        $res = [];
+
         $response = trim($response, '[]');
-        foreach (explode(';', $response) as $answer) {
-            $answer = explode(' ', trim($answer));
-            if (count($answer) == 2 && in_array($answer[1], $elIds)) {
-                $rows[$answer[1]] = (isset($rows[$answer[1]]) ? $rows[$answer[1]] . ' ' : '') . $answer[0];
-            } else {
-                \common_Logger::w('Incorrect response for MatchParser: ' . $response);
+        if (!empty($response)) {
+            foreach (explode(';', $response) as $answer) {
+                $answer = explode(' ', trim($answer));
+                if (count($answer) == 2 && in_array($answer[1], $elIds)) {
+                    $rows[$answer[1]] = (isset($rows[$answer[1]]) ? $rows[$answer[1]] . ' ' : '') . $answer[0];
+                } else {
+                    \common_Logger::w('Incorrect response for MatchParser: ' . $response);
+                }
+            }
+
+            if (count($rows)) {
+                foreach ($elIds as $elementsId) {
+                    $res[$elementsId] = isset($rows[$elementsId]) ? $rows[$elementsId] : 0;
+                }
             }
         }
 
-        return $rows;
+        return $res;
     }
 
     /**

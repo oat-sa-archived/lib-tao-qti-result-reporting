@@ -22,12 +22,10 @@
 namespace oat\qtiResultReporting\model\qtiItemParser\qtiItemElementParser;
 
 /**
- * inlineChoiceInteraction
+ * endAttemptInteraction
  *
- * Class InlineChoiceParser
- * @package oat\qtiResultReporting\model\qtiItemParser\qtiItemElementParser
  */
-class InlineChoiceParser extends AbstractElementParser
+class EndAttemptParser extends AbstractElementParser
 {
 
     public function parseResponse($response = '')
@@ -37,10 +35,7 @@ class InlineChoiceParser extends AbstractElementParser
 
     public function getElements()
     {
-        $obj = new \stdClass();
-        $obj->identifier = $this->element->attributes->responseIdentifier;
-        return [$obj];
-        //isset($this->element->choices) ? $this->element->choices : [];
+        return isset($this->element->choices) ? $this->element->choices : [];
     }
 
     public function getElementsIds()

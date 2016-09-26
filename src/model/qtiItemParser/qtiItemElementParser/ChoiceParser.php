@@ -33,22 +33,26 @@ class ChoiceParser extends AbstractElementParser
     public function parseResponse($response = '')
     {
         $rows = [];
-        $response =  trim($response, '[]');
+        $res = [];
 
-        if (strpos($response, ';')) {
-            foreach (explode(';', $response) as $item) {
-                $rows[] = trim($item, ' \'');
+        $response = trim($response, '[]');
+        if (!empty($response)) {
+            if (strpos($response, ';')) {
+                foreach (explode(';', $response) as $item) {
+                    $rows[] = trim($item, ' \'');
+                }
+            } else {
+                $rows[] = trim($response, ' \'');
             }
-        } else {
-            $rows[] = trim($response, ' \'');
+
+            if (count($rows)) {
+                foreach ($this->getElementsIds() as $elementsId) {
+                    $res[$elementsId] = in_array($elementsId, $rows) ? 1 : 0;
+                }
+            }
         }
 
-        return $rows;
-    }
-
-    public function getElements()
-    {
-        return isset($this->element->choices) ? $this->element->choices : [];
+        return $res;
     }
 
     public function getElementsIds()
@@ -57,6 +61,12 @@ class ChoiceParser extends AbstractElementParser
         foreach ($this->getElements() as $element) {
             $ids[] = $element->identifier;
         }
+
         return $ids;
+    }
+
+    public function getElements()
+    {
+        return isset($this->element->choices) ? $this->element->choices : [];
     }
 }

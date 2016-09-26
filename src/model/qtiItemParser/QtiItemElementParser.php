@@ -25,10 +25,12 @@ namespace oat\qtiResultReporting\model\qtiItemParser;
 use oat\qtiResultReporting\model\qtiItemParser\qtiItemElementParser\AbstractElementParser;
 use oat\qtiResultReporting\model\qtiItemParser\qtiItemElementParser\ChoiceParser;
 use oat\qtiResultReporting\model\qtiItemParser\qtiItemElementParser\DefaultElementParser;
+use oat\qtiResultReporting\model\qtiItemParser\qtiItemElementParser\EndAttemptParser;
 use oat\qtiResultReporting\model\qtiItemParser\qtiItemElementParser\GapMatchParser;
 use oat\qtiResultReporting\model\qtiItemParser\qtiItemElementParser\HottextParser;
 use oat\qtiResultReporting\model\qtiItemParser\qtiItemElementParser\InlineChoiceParser;
 use oat\qtiResultReporting\model\qtiItemParser\qtiItemElementParser\MatchParser;
+use oat\qtiResultReporting\model\qtiItemParser\qtiItemElementParser\TextEntryParser;
 
 
 /**
@@ -69,6 +71,12 @@ class QtiItemElementParser extends AbstractElementParser
                     break;
                 case 'inlineChoiceInteraction':
                     $parser = InlineChoiceParser::class;
+                    break;
+                case 'textEntryInteraction':
+                    $parser = TextEntryParser::class;
+                    break;
+                case 'endAttemptInteraction':
+                    $parser = EndAttemptParser::class;
                     break;
                 // ignore elements
                 case 'img':

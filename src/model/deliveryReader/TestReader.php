@@ -47,7 +47,7 @@ class TestReader implements ReaderInterface
     /**
      * @var array
      */
-    private static $testPartReaders;
+    private $testPartReaders;
 
     /**
      * TestReader constructor.
@@ -63,17 +63,17 @@ class TestReader implements ReaderInterface
      */
     public function getTestPartReaders()
     {
-        if (!isset(self::$testPartReaders)){
-            self::$testPartReaders = [];
+        if (!isset($this->testPartReaders)){
+            $this->testPartReaders = [];
             $parts = $this->getTestParts();
             foreach ($parts as $key => $testPart) {
-                if (!isset(self::$testPartReaders[$key])) {
-                    self::$testPartReaders[$key] = new TestPartReader($testPart);
+                if (!isset($this->testPartReaders[$key])) {
+                    $this->testPartReaders[$key] = new TestPartReader($testPart);
                 }
             }
         }
 
-        return self::$testPartReaders;
+        return $this->testPartReaders;
     }
 
     /**

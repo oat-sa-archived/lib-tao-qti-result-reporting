@@ -45,7 +45,7 @@ class TestPartReader implements ReaderInterface
      */
     private $items;
 
-    private static $itemReaders;
+    private $itemReaders;
 
     public function __construct($testPart)
     {
@@ -54,17 +54,17 @@ class TestPartReader implements ReaderInterface
 
     public function getItemReaders()
     {
-        if (!isset(self::$itemReaders)){
+        if (!isset($this->itemReaders)){
             $items = $this->getItems();
 
             foreach ($items as $item) {
-                if(!isset(self::$itemReaders[$item->getHref()])) {
-                    self::$itemReaders[$item->getHref()] = new ItemReader($item);
+                if(!isset($this->itemReaders[$item->getHref()])) {
+                    $this->itemReaders[$item->getHref()] = new ItemReader($item);
                 }
             }
         }
 
-        return self::$itemReaders;
+        return $this->itemReaders;
     }
 
     /**

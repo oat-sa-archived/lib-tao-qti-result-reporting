@@ -26,6 +26,7 @@ use oat\qtiResultReporting\model\qtiItemParser\qtiItemElementParser\AbstractElem
 use oat\qtiResultReporting\model\qtiItemParser\qtiItemElementParser\ChoiceParser;
 use oat\qtiResultReporting\model\qtiItemParser\qtiItemElementParser\DefaultElementParser;
 use oat\qtiResultReporting\model\qtiItemParser\qtiItemElementParser\EndAttemptParser;
+use oat\qtiResultReporting\model\qtiItemParser\qtiItemElementParser\ExtendedTextParser;
 use oat\qtiResultReporting\model\qtiItemParser\qtiItemElementParser\GapMatchParser;
 use oat\qtiResultReporting\model\qtiItemParser\qtiItemElementParser\HottextParser;
 use oat\qtiResultReporting\model\qtiItemParser\qtiItemElementParser\InlineChoiceParser;
@@ -78,8 +79,12 @@ class QtiItemElementParser extends AbstractElementParser
                 case 'endAttemptInteraction':
                     $parser = EndAttemptParser::class;
                     break;
+                case 'extendedTextInteraction':
+                    $parser = ExtendedTextParser::class;
+                    break;
                 // ignore elements
                 case 'img':
+                case 'math':
                     break;
                 default:
                     \common_Logger::w('Can not parse qtiItem element with qtiClass "'.$this->element->qtiClass.'"');

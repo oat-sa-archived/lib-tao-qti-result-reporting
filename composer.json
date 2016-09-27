@@ -28,12 +28,27 @@
   ],
   "minimum-stability": "dev",
   "require": {
-    "oat-sa/lib-tao-qti": "~1.9",
-    "qtism/qtism":"~0.10.13"
   },
   "require-dev" :
   {
-    "phpunit/phpunit": "~4.4@dev"
+    "phpunit/phpunit": "~4.4@dev",
+
+    "php": ">=5.5",
+    "phpdocumentor/reflection-docblock": "2.*",
+    "oat-sa/generis": "^2.31",
+    "qtism/qtism": "^0.10.13",
+    "oat-sa/extension-tao-delivery-rdf": "^1.8",
+    "oat-sa/extension-tao-testqti": "^5.13",
+    "oat-sa/tao-core": "^7.9",
+    "oat-sa/extension-tao-group": "^2.10",
+    "oat-sa/extension-tao-testtaker": "^2.10",
+    "oat-sa/extension-tao-backoffice": "^0.12.0",
+    "oat-sa/extension-tao-test": "^3.4",
+    "oat-sa/extension-tao-item": "^2.21",
+    "oat-sa/extension-tao-delivery": "^4.4",
+    "oat-sa/extension-tao-outcome": "^2.11",
+    "oat-sa/lib-tao-qti": "^1.9",
+    "oat-sa/extension-tao-itemqti": "^5.0"
   },
   "autoload": {
     "psr-4": {

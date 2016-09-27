@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1" xmlns:html5="html5" xmlns:pci="http://www.imsglobal.org/xsd/portableCustomInteraction" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p1 http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1.xsd" identifier="Gr3-Math-FormA-Part1-Set1-Hig" title="Gr3-Math-FormA-Part1-Set1-Hig" label="" xml:lang="en-US" adaptive="false" timeDependent="false" toolName="TAO" toolVersion="3.1.0-sprint34">
+  <responseDeclaration identifier="RESPONSE" cardinality="record">
+    <correctResponse>
+      <value baseType="integer" fieldIdentifier="actualResponse"><![CDATA[1]]></value>
+      <value baseType="boolean" fieldIdentifier="scaffolded"><![CDATA[false]]></value>
+    </correctResponse>
+  </responseDeclaration>
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float">
+    <defaultValue>
+      <value>0</value>
+    </defaultValue>
+  </outcomeDeclaration>
+  <stylesheet href="style/custom/tao-user-styles.css" type="text/css" media="all" title=""/>
+  <itemBody>
+    <div class="grid-row">
+      <div class="col-12">
+        <customInteraction responseIdentifier="RESPONSE">
+          <pci:portableCustomInteraction customInteractionTypeIdentifier="adaptiveChoiceInteraction" hook="adaptiveChoiceInteraction/runtime/adaptiveChoiceInteraction.js" version="">
+            <pci:responseSchema href="http://imsglobal.org/schema/json/v1.0/response.json"/>
+            <pci:resources location="http://imsglobal.org/pci/1.0.15/sharedLibraries.xml">
+              <pci:libraries>
+                <pci:lib id="IMSGlobal/jquery_2_1_1"/>
+                <pci:lib id="OAT/lodash"/>
+                <pci:lib id="adaptiveChoiceInteraction/runtime/js/renderer"/>
+              </pci:libraries>
+              <pci:stylesheets>
+                            </pci:stylesheets>
+              <pci:mediaFiles>
+                            </pci:mediaFiles>
+            </pci:resources>
+            <pci:properties xmlns:pci="http://www.imsglobal.org/xsd/portableCustomInteraction">
+              <pci:entry key="attempts">0</pci:entry>
+              <pci:entry key="disableScaffoldingBehavior"/>
+              <pci:properties key="scaffoldedResponse"/>
+              <pci:properties key="answers"/>
+            </pci:properties>
+            <pci:markup>
+              <html5:div xmlns="http://www.w3.org/1999/xhtml" class="adaptiveChoiceInteraction">
+                <html5:div id="feedback-box"/>
+                <html5:div class="js-prompt widget-blockInteraction prompt">Part 1 -Set 1 - High</html5:div>
+                <html5:div class="js-choice-container">
+                  <html5:ol class="plain block-listing qti-choice-container horizontal-layout solid">
+                    <html5:li class="qti-choice">
+                      <html5:div class="js-label-box">
+                        <html5:input type="radio" value="0" name="RESPONSE" class="answer-input js-answer-input"/>
+                        <html5:div class="label-box">
+                          <html5:div data-choice-index="0" class="label-content clear widget-blockInteraction js-choice-label">
+                            Choice 1
+                        </html5:div>
+                        </html5:div>
+                      </html5:div>
+                    </html5:li>
+                    <html5:li class="qti-choice">
+                      <html5:div class="js-label-box">
+                        <html5:input type="radio" value="1" name="RESPONSE" class="answer-input js-answer-input correct"/>
+                        <html5:div class="label-box">
+                          <html5:div data-choice-index="1" class="label-content clear widget-blockInteraction js-choice-label">
+                            Choice 2
+                        </html5:div>
+                        </html5:div>
+                      </html5:div>
+                    </html5:li>
+                    <html5:li class="qti-choice">
+                      <html5:div class="js-label-box">
+                        <html5:input type="radio" value="2" name="RESPONSE" class="answer-input js-answer-input"/>
+                        <html5:div class="label-box">
+                          <html5:div data-choice-index="2" class="label-content clear widget-blockInteraction js-choice-label">
+                            Choice 3
+                        </html5:div>
+                        </html5:div>
+                      </html5:div>
+                    </html5:li>
+                  </html5:ol>
+                </html5:div>
+              </html5:div>
+            </pci:markup>
+          </pci:portableCustomInteraction>
+        </customInteraction>
+      </div>
+    </div>
+  </itemBody>
+  <responseProcessing>
+    <responseCondition>
+      <responseIf>
+        <match>
+          <fieldValue fieldIdentifier="actualResponse">
+            <variable identifier="RESPONSE"/>
+          </fieldValue>
+          <fieldValue fieldIdentifier="actualResponse">
+            <correct identifier="RESPONSE"/>
+          </fieldValue>
+        </match>
+        <setOutcomeValue identifier="SCORE">
+          <baseValue baseType="float">1.0</baseValue>
+        </setOutcomeValue>
+      </responseIf>
+      <responseElse>
+        <setOutcomeValue identifier="SCORE">
+          <baseValue baseType="float">0.0</baseValue>
+        </setOutcomeValue>
+      </responseElse>
+    </responseCondition>
+  </responseProcessing>
+</assessmentItem>

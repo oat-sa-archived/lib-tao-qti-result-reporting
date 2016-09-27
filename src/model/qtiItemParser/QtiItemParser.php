@@ -42,6 +42,9 @@ class QtiItemParser implements ParserInterface
      */
     private $elementsParsers;
 
+    /**
+     * @var array
+     */
     private $responseIdentifiers;
 
     public function __construct($qti)
@@ -49,6 +52,10 @@ class QtiItemParser implements ParserInterface
         $this->qti = $qti;
     }
 
+    /**
+     * Get parsers for each element of the item
+     * @return array
+     */
     public function getElementParsers()
     {
         if (!isset($this->elementsParsers)) {
@@ -64,6 +71,8 @@ class QtiItemParser implements ParserInterface
     /**
      * Response identifier can be changed from GUI
      * Collect all of the possible identifiers
+     *
+     * @return array
      */
     public function getResponseIdentifiers()
     {

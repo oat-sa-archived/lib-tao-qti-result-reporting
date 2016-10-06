@@ -37,18 +37,31 @@ class DeliveryItemReader
 {
 
     /**
+     * Loaded readers
+     * @var array
+     */
+    private static $deliveryReaders = [];
+
+    /**
      * List of the QtiItemParsers
      * @see \oat\qtiResultReporting\model\qtiItemParser\QtiItemParser
      * @var array
      */
     private static $parsers = [];
 
+    private static $branchRules = [];
+
+    /**
+     * Load qtiItems from the delivery
+     * @param \core_kernel_classes_Resource $delivery
+     * @return mixed
+     */
     public static function getQtiItemParsers(\core_kernel_classes_Resource $delivery)
     {
         if (!isset(self::$parsers[$delivery->getUri()])) {
 
             self::$parsers[$delivery->getUri()] = [];
-            $deliveryReader = new DeliveryReader($delivery);
+            $deliveryReader = self::getDeliveryReader($delivery);
 
             /** @var TestPartReader $testPartReader */
             foreach ($deliveryReader->getTestReader()->getTestPartReaders() as $testPartReader) {
@@ -68,5 +81,45 @@ class DeliveryItemReader
         }
 
         return self::$parsers[$delivery->getUri()];
+    }
+
+    /**
+     * Load branch rules from the items (which in the delivery)
+     *
+     * @param \core_kernel_classes_Resource $delivery
+     * @return array
+     */
+    public static function getItemsBranchRules(\core_kernel_classes_Resource $delivery)
+    {
+        if (!isset(self::$branchRules[$delivery->getUri()])) {
+
+            self::$parsers[$delivery->getUri()] = [];
+            $deliveryReader = self::getDeliveryReader($delivery);
+
+            /** @var TestPartReader $testPartReader */
+            foreach ($deliveryReader->getTestReader()->getTestPartReaders() as $testPartReader) {
+                /**
+                 * @var string $href
+                 * @var ItemReader $itemReader
+                 */
+                foreach ($testPartReader->getItemReaders() as $href => $itemReader) {
+
+                    $uriItem = explode('|', $href)[0];
+                    self::$branchRules[$delivery->getUri()][$uriItem]['rules'] = $itemReader->getItem()->getBranchRules()->getArrayCopy();
+                    self::$branchRules[$delivery->getUri()][$uriItem]['id'] = $itemReader->getItem()->getIdentifier();
+                }
+            }
+        }
+
+        return self::$branchRules[$delivery->getUri()];
+    }
+
+    private static function getDeliveryReader(\core_kernel_classes_Resource $delivery)
+    {
+        if (!isset(self::$deliveryReaders[$delivery->getUri()])){
+            self::$deliveryReaders[$delivery->getUri()] = new DeliveryReader($delivery);
+        }
+
+        return self::$deliveryReaders[$delivery->getUri()];
     }
 }

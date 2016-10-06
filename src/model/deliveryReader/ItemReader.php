@@ -59,6 +59,11 @@ class ItemReader implements ReaderInterface
         $this->item = $item;
     }
 
+    public function getItem()
+    {
+        return $this->item;
+    }
+
     public function getQtiItem()
     {
         if (!isset($this->qtiItem)) {

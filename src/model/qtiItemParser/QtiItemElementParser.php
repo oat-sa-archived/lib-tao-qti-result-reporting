@@ -82,6 +82,14 @@ class QtiItemElementParser extends AbstractElementParser
                 case 'extendedTextInteraction':
                     $parser = ExtendedTextParser::class;
                     break;
+                case 'customInteraction':
+                    switch ($this->element->typeIdentifier) {
+                        case 'textReaderInteraction':
+                            break 2;
+                        default:
+                            \common_Logger::w('Couldn\'t be parsed customInteraction "'.$this->element->typeIdentifier.'"');
+                    }
+                    break;
                 // ignore elements
                 case 'img':
                 case 'math':

@@ -93,6 +93,7 @@ class QtiItemElementParser extends AbstractElementParser
                 // ignore elements
                 case 'img':
                 case 'math':
+                case 'include':
                     break;
                 default:
                     \common_Logger::w('Can not parse qtiItem element with qtiClass "'.$this->element->qtiClass.'"');

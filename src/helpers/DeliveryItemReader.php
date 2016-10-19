@@ -22,9 +22,9 @@
 namespace oat\qtiResultReporting\helpers;
 
 
-use oat\qtiResultReporting\model\DeliveryReader\DeliveryReader;
-use oat\qtiResultReporting\model\DeliveryReader\ItemReader;
-use oat\qtiResultReporting\model\DeliveryReader\TestPartReader;
+use oat\qtiResultReporting\model\deliveryReader\DeliveryReader;
+use oat\qtiResultReporting\model\deliveryReader\ItemReader;
+use oat\qtiResultReporting\model\deliveryReader\TestPartReader;
 use oat\qtiResultReporting\model\qtiItemParser\QtiItemParser;
 
 /**
